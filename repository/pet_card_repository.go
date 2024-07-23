@@ -31,7 +31,7 @@ func (pr *PetRepository) GetPetDetails() ([]models.PetCard, error) {
 	var pet models.PetCard
 
 	for res.Next() {
-		err := res.Scan(&pet.Name, &pet.Type, &pet.Age, &pet.Phone, &pet.Image, &pet.Details)
+		err := res.Scan(&pet.Name, &pet.Type, &pet.Age, &pet.Phone, &pet.Image, &pet.Details , &pet.Adopted)
 
 		if err != nil {
 			return nil, err
