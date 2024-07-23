@@ -9,7 +9,7 @@ type PetCard struct {
 	Phone   string `json:"phone"`
 	Image   string `json:"image"`
 	Details string `json:"description"`
-	Adopted bool `json:"adopted"`
+	Adopted any `json:"adopted"`
 }
 
 type PetInterface interface {
