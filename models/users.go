@@ -15,4 +15,5 @@ type UserModel struct{
 type UserInterface interface{
 	RegisterUser(*io.ReadCloser) error
 	LoginUser(*io.ReadCloser) (string , error)
+	ForgotPassword(*io.ReadCloser) error
 }

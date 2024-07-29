@@ -40,3 +40,15 @@ func(uc *UserController) LoginUserController(w http.ResponseWriter , r *http.Req
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(models.SuccessPayload{Message: "Success" , Data: res})
 }
+
+func(uc *UserController) ForgotPasswordController(w http.ResponseWriter , r *http.Request){
+	w.Header().Set("Content-Type" , "application/json")
+	 err := uc.userRepositoryIns.ForgotPassword(&r.Body)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(models.ErrorPayload{Message: err.Error()})
+		return
+	}
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(models.SuccessPayload{Message: "Success" , Data: nil})
+}

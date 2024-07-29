@@ -67,6 +67,20 @@ func(ur *UserRepository) LoginUser(r *io.ReadCloser) (string , error) {
 	return tokenString , nil
 }
 
-func(ur *UserRepository) ChangePassword(r *io.ReadCloser) error {
+func(ur *UserRepository) ForgotPassword(r *io.ReadCloser) error {
+	var usr models.UserModel
+	err := json.NewDecoder(*r).Decode(&usr)
+	if err != nil {
+		return err
+	}
+	pass , err := bcrypt.GenerateFromPassword([]byte(usr.Password) , 2)
+	if err != nil {
+		return err
+	}
+	res , err := ur.db.Exec("UPDATE users SET password=$1 WHERE email=$2" , pass , usr.Email);
+	if err != nil {
+		return err
+	}
+	log.Println(res)
 	return nil
 }

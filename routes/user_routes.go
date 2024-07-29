@@ -15,4 +15,5 @@ func UserRouter(router *mux.Router , db *sql.DB){
 
 	router.HandleFunc("/register" , cont.RegisterUserController).Methods("POST")
 	router.HandleFunc("/login" , cont.LoginUserController).Methods("POST")
+	router.HandleFunc("/forgotpassword" , cont.ForgotPasswordController).Methods("POST")
 }
